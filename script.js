@@ -9,6 +9,12 @@ const apiKey = 'mwL4lXENsfxsoHyv01twCTdL6U52bVAYZHlhrk2AlHE'
 const count = 10;
 const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`;
 
+
+// Check if all images were loaded 
+
+
+
+// Helper Function to set Attributes on DOM Elements
 function setAttributes(element, attributes) {
   for (const key in attributes) {
     element.setAttribute(key, attributes[key])
@@ -28,12 +34,13 @@ function displayPhotos() {
         });
         //create <img> for photo
         const img = document.createElement('img');
-        
         setAttributes(img, {
           src: photo.urls.regular, 
           alt: photo.alt_description,
           title: photo.alt_description,
         })
+        // Event Listener, check when each is finished loading
+        img.addEventListener('load', imageLoaded); 
         // Put <img> inside <a>, then put both inside imageContainer Element 
         item.appendChild(img);
         imageContainer.appendChild(item);
